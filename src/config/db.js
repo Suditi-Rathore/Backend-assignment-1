@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://suditirathore_db_user:ZqYibmx2GzJ1yhbB@cluster0.q3ovy5h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+      ///mongodb link reemoved for security reasons
     );
     console.log("Connected to MongoDB");
   } catch (error) {
