@@ -9,6 +9,8 @@ import logger from "./src/middleware/logger.middleware.js";
 import authMiddleware from "./src/middleware/auth.middleware.js";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./src/swagger/swagger.js";
+const errorHandler = require("./middleware/errorHandler");
+
 
 const app = express();
 const port = 3001;
@@ -32,6 +34,8 @@ app.use(logger);
 app.use("/api/auth", authRoute);
 app.use("/api/products", authMiddleware, productRoute);
 app.use("/api/employees", authMiddleware, employeeRoute);
+app.use(errorHandler);
+
 
 app.get("/", authMiddleware, (req, res) => {
   res.send("Hello !!!");
