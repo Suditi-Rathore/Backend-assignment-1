@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import Product from "./src/models/product.model.js";
 import productRoute from "./src/routes/product.route.js";
 import employeeRoute from "./src/routes/employee.route.js";
+import authRoute from "./src/routes/auth.route.js";
 import connectDB from "./src/config/db.js";
 import logger from "./src/middleware/logger.middleware.js";
 import authMiddleware from "./src/middleware/auth.middleware.js";
@@ -28,8 +29,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(logger);
 
 //routes
-app.use("/api/products", productRoute);
-app.use("/api/employees", employeeRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/products", authMiddleware, productRoute);
+app.use("/api/employees", authMiddleware, employeeRoute);
 
 app.get("/", authMiddleware, (req, res) => {
   res.send("Hello !!!");
